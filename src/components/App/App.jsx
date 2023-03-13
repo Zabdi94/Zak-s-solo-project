@@ -19,8 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import './App.css';
+import MovieApi from '../MovieApi/MovieApi';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
             path="/user"
           >
             <UserPage />
+            <MovieApi/>
           </ProtectedRoute>
 
           <ProtectedRoute
