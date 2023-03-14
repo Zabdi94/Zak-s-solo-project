@@ -1,14 +1,14 @@
 import { useSelector,useDispatch } from "react-redux"
-import axios from 'axios'
 import { useState } from "react"
 import { useEffect } from "react"
-
+import Stack from "@mui/material/Stack";
+import { TextField } from "@mui/material";
 
 function MovieApi () {
 const dispatch = useDispatch ()
-const CurrentMovie = useSelector(store => store.movieNow)
+const playings = useSelector(store => store.movieNow)
 
-const [movie, setMovie] = useState('')
+const [movies, setMovies] = useState([])
 
 useEffect(() => {
     getMovie()
@@ -19,29 +19,29 @@ useEffect(() => {
 //   }
 
 
-const getMovie = () => {
-   axios.get('/api/movie')
-   .then((response)=> {
-    console.log('in response',response.data.results)
-    dispatch({
-        type: "MOVIE_API",
-        payload: response.data.results
-    });
-   }) .catch (error => {
-    console.log('error in get',error)
-   })
-  
-}
 
-return (
-    <>
-    <main>
-        <h1>Movies!</h1>
-        <section className="movies">
-            
-        </section>
-    </main>
-    </>
-)
+const getMovie = () => {
+    dispatch({
+        type: "GET_API",
+        payload: movies,
+    });
+    console.log('THIS IS MOVIE',movies)
+   }
+
+
+return <div className="movies">
+{movies.map(movie => (
+  <playings
+
+    key={movie?.id}
+    title={movie?.title}
+    popularity={movie?.popularity}
+    release_date={movie?.release_date}
+    image={movie?.poster_path}
+  />
+))}
+
+</div>
+  
 }
 export default MovieApi

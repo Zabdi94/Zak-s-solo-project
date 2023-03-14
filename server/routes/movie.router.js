@@ -6,12 +6,14 @@ const axios = require('axios')
 
 // Get all the items from the movie
 router.get('/',(req,res)=> {
+    console.log('this is req/body',req)
+    const search = req.params.search
 axios({
     method: 'GET',
     url: 'https://api.themoviedb.org/3/movie/now_playing',
         params:{
         api_key: process.env.api_key,
-       // language : en-US,
+        q: search,
         page: 1
     }
 }).then (response => {

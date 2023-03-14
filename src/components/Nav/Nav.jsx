@@ -29,7 +29,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/info">
-              Info Page
+              Watchlist
             </Link>
 
             <LogOutButton className="navLink" />
