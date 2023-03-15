@@ -1,8 +1,9 @@
 import { useSelector,useDispatch } from "react-redux"
 import { useState } from "react"
 import { useEffect } from "react"
-import Stack from "@mui/material/Stack";
+import { Card,Box,Button} from '@mui/material';
 import { TextField } from "@mui/material";
+import './MovieApi.css'
 
 function MovieApi () {
 const dispatch = useDispatch ()
@@ -30,16 +31,24 @@ const getMovie = () => {
 
 
 return <div className="movies">
-{movies.map(movie => (
-  <playings
+    <TextField placeholder=" Search"></TextField>
+    <Button>Search</Button>
+{playings.map(playing => {
 
-    key={movie?.id}
-    title={movie?.title}
-    popularity={movie?.popularity}
-    release_date={movie?.release_date}
-    image={movie?.poster_path}
-  />
-))}
+   // console.log('poster',playing.poster_path)
+    return (
+<div key={playing?.id} className ="content" > 
+<Box>
+<Card variant="outlined">
+   <p>title:{playing?.title}/</p> 
+   <p>popularity:{playing?.popularity}</p> 
+   <p>release_date:{playing?.release_date}</p>
+   <p className="description"> description: {playing?.overview} </p> 
+   <img src = {'https://image.tmdb.org/t/p/original'+ playing?.poster_path} alt= "Movies" height="200" width="150"/>
+</Card>
+</Box>
+</div>
+)})}
 
 </div>
   

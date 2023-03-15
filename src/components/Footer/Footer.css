@@ -3,3 +3,13 @@ footer {
   padding: 20px;
   text-align: center;
 }
+.img {
+  display: flex;
+  flex-wrap: wrap;
+  border: 10px;
+}
+p {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px black;
+}

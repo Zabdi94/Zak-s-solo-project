@@ -1,0 +1,15 @@
+img {
+    display: flex;
+    flex-wrap: wrap;
+    border: 10px;
+}
+p.description {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px black;
+}
+
+.my-card-content {
+    padding: 16px;
+  }
+  
