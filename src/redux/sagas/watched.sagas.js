@@ -7,7 +7,7 @@ function* fetchMovies() {
       method: "GET",
       url: "/api/watched",
     });
-    console.log("gets all shows", response.data);
+   // console.log("gets all shows", response.data);
     yield put({
       type: "SET_WATCHED",
       payload: response.data,

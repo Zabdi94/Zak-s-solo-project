@@ -28,6 +28,7 @@ function MovieApi() {
 
   useEffect(() => {
     getMovie();
+    getFilm();
   }, []);
 
   //   const onClickMovie = () => {
@@ -40,6 +41,12 @@ function MovieApi() {
       payload: movies,
     });
     console.log("THIS IS MOVIE", movies);
+  };
+
+  const getFilm = () => {
+    dispatch({
+      type: "FETCH_MOVIES",
+    });
   };
 
   const addFilm = (event) => {

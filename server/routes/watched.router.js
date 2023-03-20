@@ -8,11 +8,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
   // GET route code here
   const sqlQuery = `
-  SELECT * FROM films 
-  WHERE user_id = $1 AND watched = $2
-  ORDER BY "original_title" ASC;`;
+  SELECT * FROM user_films 
+  WHERE user_id = $1
+  `;
 
-  const sqlValues = [req.user.id, false];
+  const sqlValues = [req.user.id];
   pool
     .query(sqlQuery, sqlValues)
     .then((result) => {

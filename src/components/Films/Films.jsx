@@ -8,6 +8,7 @@ import {
   CardMedia,
   Stack,
   Typography,
+  Box,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -38,37 +39,41 @@ function Films(playing) {
     console.log("this is the update shows reducer", Films);
   };
   return watchList.map((movie, i) => {
-    console.log("MOVIE", movie);
+    // console.log("MOVIE", movie);
 
     return (
       <Card
+        key={i}
         variant="outlined"
         sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
       >
         <CardMedia
           component="img"
           sx={{ width: 250, flexDirection: "column", flexWrap: "wrap" }}
-          image={"https://image.tmdb.org/t/p/original" + movie?.poster_path}
+          image={"https://image.tmdb.org/t/p/original" + movie?.backdrop_path}
         />
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography key={i} component="div" variant="h5">
-            {movie.title.substring(0, 40)}
-          </Typography>
-          <Typography format="YYYY">
-            {" "}
-            Release date: {movie?.release_date}
-          </Typography>
-          <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
-            <Button
-              variant="contained"
-              color="secondary"
-              className="btn-block"
-              onClick={handleDelete}
-            >
-              DELETE
-            </Button>
-          </Stack>
-        </CardContent>
+
+        <Box sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography component="div" variant="h5">
+              {movie.title?.substring(0, 40)}
+            </Typography>
+            <Typography format="YYYY">
+              {" "}
+              Release date: {movie?.release_date}
+            </Typography>
+            <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                className="btn-block"
+                onClick={handleDelete}
+              >
+                DELETE
+              </Button>
+            </Stack>
+          </CardContent>
+        </Box>
       </Card>
     );
   });

@@ -20,13 +20,13 @@ function AboutPage() {
   const Film = location.state;
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    dispatch({
-      type: "DELETE_MOVIE",
-      payload: Film.id,
-    });
-    console.log("Fetching", Film.id);
-  };
+  // const handleDelete = () => {
+  //   dispatch({
+  //     type: "DELETE_MOVIE",
+  //     payload: Film.id,
+  //   });
+  //   console.log("Fetching", Film.id);
+  // };
 
   return (
     <div className="container">
@@ -46,7 +46,7 @@ function AboutPage() {
             <Typography component="div" variant="p">
               Description : {Film.overview}
             </Typography>
-            <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
+            {/* <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
               <Button
                 variant="contained"
                 color="secondary"
@@ -55,7 +55,7 @@ function AboutPage() {
               >
                 DELETE
               </Button>
-            </Stack>
+            </Stack> */}
           </CardContent>
         </div>
       ) : (
