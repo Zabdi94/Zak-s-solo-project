@@ -6,9 +6,8 @@ import { Card,Box,Button, CardContent, CardMedia,Stack, Grid} from '@mui/materia
 import { TextField } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import './MovieApi.css'
-import MovieList from "../MovieList/MovieList";
 import {Rating} from "@mui/material";
-
+import Films from "../Films/Films";
 
 function MovieApi () {
 const dispatch = useDispatch ()
@@ -25,7 +24,6 @@ useEffect(() => {
 //   }
 
 
-
 const getMovie = () => {
     dispatch({
         type: "GET_API",
@@ -34,19 +32,20 @@ const getMovie = () => {
     console.log('THIS IS MOVIE',movies)
    }
 
-console
+console.log("PLAYINGS",playings)
 return (
 <div className="movies">
     <TextField fullWidth size="large" id="standard-basic" label="Search" variant="standard" ></TextField>
     <Button>Submit</Button>
 
 {playings.map(playing => {
-    <MovieList playing = {playing} />
+    <Films playing = {playing} />
    // console.log('poster',playing.poster_path)
 
     return (
-<div key={playing?.id} className ="content" > 
 
+<div key={playing?.id} className ="content" > 
+ <Films playing = {playing} />
 <Card variant="outlined" sx={{display: "flex", height: 400,m: 1, flexWrap: "wrap", }} >
    <CardMedia component="img" sx={{width: 250, flexDirection : "column", flexWrap: "wrap"  }}
 image = {'https://image.tmdb.org/t/p/original'+ playing?.poster_path} />   
@@ -68,7 +67,9 @@ image = {'https://image.tmdb.org/t/p/original'+ playing?.poster_path} />
   }}
 />
     <Stack spacing={2} direction="row" sx={{mt:6}}>
-   
+    <Button variant="contained" color="secondary" className="btn-block" onClick={Films}>
+  Add to Watchlist
+</Button>
 </Stack>
    </CardContent>
    </Box>

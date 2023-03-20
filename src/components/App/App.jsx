@@ -21,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import MovieApi from '../MovieApi/MovieApi';
-import MovieList from '../MovieList/MovieList';
+import Films from '../Films/Films';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ function App() {
             exact
             path="/info"
           >
-            <MovieList />
+            <Films />
           </ProtectedRoute>
 
           <Route
