@@ -44,7 +44,7 @@ function MovieApi() {
 
   const addFilm = (event) => {
     let id = event.target.id;
-    console.log("IN FILMS");
+    //console.log("IN FILMS");
     dispatch({
       type: "ADD_MOVIE",
       payload: {

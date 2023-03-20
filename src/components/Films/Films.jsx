@@ -52,7 +52,7 @@ function Films(playing) {
         />
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography key={i} component="div" variant="h5">
-            {movie.original_title.substring(0, 40)}
+            {movie.title.substring(0, 40)}
           </Typography>
           <Typography format="YYYY">
             {" "}

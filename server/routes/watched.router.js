@@ -9,12 +9,12 @@ router.get("/", (req, res) => {
   // GET route code here
   const sqlQuery = `
   SELECT * FROM films 
-  WHERE user_id = $1 AND watched =$2
+  WHERE user_id = $1 AND watched = $2
   ORDER BY "original_title" ASC;`;
 
   const sqlValues = [req.user.id, false];
   pool
-    .sqlQuery(sqlQuery, sqlValues)
+    .query(sqlQuery, sqlValues)
     .then((result) => {
       console.log("show:", result.rows);
       res.send(result.rows);
@@ -55,7 +55,7 @@ router.delete("/:id", (req, res) => {
   console.log("deleted from watchlist", req.params.id);
   const sqlQuery = `
   DELETE FROM "user_films"
-  WHERE "id" =$1;
+  WHERE id =$1;
   `;
   const sqlValues = [req.params.id];
   pool
