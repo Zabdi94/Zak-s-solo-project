@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   const sqlQuery = `
   SELECT * FROM films 
   WHERE user_id = $1 AND watched =$2
-  ORDER BY "name" ASC;`;
+  ORDER BY "original_title" ASC;`;
 
   const sqlValues = [req.user.id, false];
   pool
