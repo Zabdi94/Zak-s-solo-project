@@ -42,12 +42,14 @@ function MovieApi() {
     console.log("THIS IS MOVIE", movies);
   };
 
-  const getFilms = (event) => {
+  const addFilm = (event) => {
     let id = event.target.id;
-
+    console.log("IN FILMS");
     dispatch({
-      type: "SET_WATCHED",
-      payload: playings[id],
+      type: "ADD_MOVIE",
+      payload: {
+        id,
+      },
     });
 
     // dispatch({
@@ -69,15 +71,6 @@ function MovieApi() {
 
   return (
     <div className="movies">
-      <TextField
-        fullWidth
-        size="large"
-        id="standard-basic"
-        label="Search"
-        variant="standard"
-      ></TextField>
-      <Button>Submit</Button>
-
       {playings.map((playing, i) => {
         <Films playing={playing} />;
         // console.log('poster',playing.poster_path)
@@ -122,7 +115,7 @@ function MovieApi() {
                       variant="contained"
                       color="secondary"
                       className="btn-block"
-                      onClick={(playing) => getFilms(playing)}
+                      onClick={(playing) => addFilm(playing)}
                     >
                       Add to Watchlist
                     </Button>

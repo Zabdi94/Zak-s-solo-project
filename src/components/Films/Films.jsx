@@ -1,8 +1,14 @@
-import Typography from "@mui/material/styles/createTypography";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert2";
-import { Card, Button, CardContent, CardMedia, Stack } from "@mui/material";
+import {
+  Card,
+  Button,
+  CardContent,
+  CardMedia,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -12,7 +18,7 @@ function Films(playing) {
 
   const watchList = useSelector((store) => store.watchedReducer);
 
-  console.log("arwg", watchList);
+  //console.log("arwg", watchList);
   const handleDelete = () => {
     dispatch({
       type: "DELETE_MOVIE",
@@ -34,7 +40,37 @@ function Films(playing) {
   return watchList.map((movie, i) => {
     console.log("MOVIE", movie);
 
-    return <h2 key={i}>{movie.title}</h2>;
+    return (
+      <Card
+        variant="outlined"
+        sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
+      >
+        <CardMedia
+          component="img"
+          sx={{ width: 250, flexDirection: "column", flexWrap: "wrap" }}
+          image={"https://image.tmdb.org/t/p/original" + movie?.poster_path}
+        />
+        <CardContent sx={{ flex: "1 0 auto" }}>
+          <Typography key={i} component="div" variant="h5">
+            {movie.original_title.substring(0, 40)}
+          </Typography>
+          <Typography format="YYYY">
+            {" "}
+            Release date: {movie?.release_date}
+          </Typography>
+          <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className="btn-block"
+              onClick={handleDelete}
+            >
+              DELETE
+            </Button>
+          </Stack>
+        </CardContent>
+      </Card>
+    );
   });
 
   // <Card

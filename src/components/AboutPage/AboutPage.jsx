@@ -44,12 +44,13 @@ function AboutPage() {
             image={"https://image.tmdb.org/t/p/original" + Film?.poster_path}
           />
           <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography format="YYYY">{Film?.release_date}</Typography>
             <Typography component="div" variant="h5">
               {Film.original_title.substring(0, 40)}
-              {Film.overview}
             </Typography>
-            <Typography color="text.secondary" component="div">
-              <Typography format="YYYY">{Film?.release_date}</Typography>
+            <Typography color="text.secondary" component="div"></Typography>
+            <Typography component="div" variant="p">
+              Description : {Film.overview}
             </Typography>
           </CardContent>
         </div>
