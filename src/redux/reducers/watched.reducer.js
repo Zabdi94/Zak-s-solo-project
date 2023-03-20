@@ -1,10 +1,11 @@
 const watchedReducer = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_WATCHED' :
-            return action.payload;
-        default:
-            return state;    
-    }
+  console.log("ins staw", state);
+  switch (action.type) {
+    case "SET_WATCHED":
+      return [...state, action.payload];
+    default:
+      return state;
+  }
 };
 
 export default watchedReducer;
