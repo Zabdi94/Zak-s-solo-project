@@ -34,9 +34,10 @@ function AboutPage() {
         <div>
           <CardMedia
             component="img"
-            sx={{ width: 250, flexDirection: "column", flexWrap: "wrap" }}
-            image={"https://image.tmdb.org/t/p/original" + Film?.poster_path}
+            sx={{ width: 700, flexDirection: "column", flexWrap: "wrap" }}
+            image={"https://image.tmdb.org/t/p/original" + Film?.backdrop_path}
           />
+
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography format="YYYY">{Film?.release_date}</Typography>
             <Typography component="div" variant="h5">

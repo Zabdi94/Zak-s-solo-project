@@ -137,7 +137,3 @@ function MovieApi() {
   );
 }
 export default MovieApi;
-
-{
-  /* <h3>{playing?.title}</h3>  */
-}

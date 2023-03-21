@@ -8,9 +8,9 @@ const router = express.Router();
 router.get("/", (req, res) => {
   // GET route code here
   const sqlQuery = `
-  SELECT * FROM user_films 
+  SELECT * FROM user_films
   WHERE user_id = $1
-  `;
+  ;`;
 
   const sqlValues = [req.user.id];
   pool
@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
  * POST route template
  */
 router.post("/", (req, res) => {
-  console.log("ROUTER POST", req.body.id);
+  console.log("ROUTER POSTS", req.body.id);
 
   const sqlQuery = `
 INSERT INTO "user_films"
