@@ -49,8 +49,8 @@ function MovieApi() {
     });
   };
 
-  const addFilm = (event) => {
-    let id = event.target.id;
+  const addFilm = (movie) => {
+    let id = movie.id;
     //console.log("IN FILMS");
     dispatch({
       type: "ADD_MOVIE",
@@ -68,11 +68,11 @@ function MovieApi() {
     //   },
     // });
 
-    console.log(playings[id]);
+    // console.log(playings[id]);
 
     history.push({
       pathname: "/about",
-      state: playings[id],
+      state: movie,
     });
   };
 
@@ -122,7 +122,7 @@ function MovieApi() {
                       variant="contained"
                       color="secondary"
                       className="btn-block"
-                      onClick={(playing) => addFilm(playing)}
+                      onClick={(e) => addFilm(playing)}
                     >
                       Add to Watchlist
                     </Button>
