@@ -28,7 +28,7 @@ function MovieApi() {
 
   useEffect(() => {
     getMovie();
-    getFilm();
+    // getFilm();
   }, []);
 
   //   const onClickMovie = () => {

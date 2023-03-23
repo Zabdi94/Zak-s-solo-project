@@ -40,7 +40,7 @@ function Films() {
       type: "UPDATE_MOVIES",
       payload: watchList.id,
     });
-    console.log("this is the update shows reducer", watchList);
+    console.log("this is the update movie reducer", watchList);
   };
 
   console.log("WATCHLIST", watchList);
@@ -50,7 +50,7 @@ function Films() {
         console.log("MOVIE", movie);
 
         return (
-          <div key={i} className="show">
+          <div key={i} className="movie">
             <Card
               variant="outlined"
               sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
