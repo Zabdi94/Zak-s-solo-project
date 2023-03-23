@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
   pool
     .query(sqlQuery, sqlValues)
     .then((result) => {
-      console.log("show:", result.rows);
+      //console.log("show:", result.rows);
       res.send(result.rows);
     })
     .catch((error) => {
@@ -73,12 +73,11 @@ router.put("/:id", (req, res) => {
   console.log("In put/update", req.params.id);
 
   const sqlQuery = `
-  UPDATE "user_films"
-  SET watched =$1
-  WHERE id =$2;
+  UPDATE FROM "user_films"
+  WHERE user_id = $1 AND films_id = $2;
   `;
 
-  const sqlParams = [true, req.params.id];
+  const sqlParams = [req.user.id, req.params.id];
   pool
     .query(sqlQuery, sqlParams)
     .then(() => {

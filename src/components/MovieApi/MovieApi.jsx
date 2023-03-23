@@ -40,7 +40,7 @@ function MovieApi() {
       type: "GET_API",
       payload: movies,
     });
-    console.log("THIS IS MOVIE", movies);
+    // console.log("THIS IS MOVIE", movies);
   };
 
   const getFilm = () => {
@@ -75,7 +75,12 @@ function MovieApi() {
           <div key={playing?.id} className="content">
             <Card
               variant="outlined"
-              sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
+              sx={{
+                display: "flex",
+                height: 400,
+                m: 1,
+                flexWrap: "wrap",
+              }}
             >
               <CardMedia
                 component="img"
@@ -97,14 +102,7 @@ function MovieApi() {
                       {playing?.release_date}
                     </Typography>
                   </Typography>
-                  <Rating
-                    name="popularity"
-                    value={playing?.voter_count}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                      alert("Rated");
-                    }}
-                  />
+
                   <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
                     <Button
                       id={i}

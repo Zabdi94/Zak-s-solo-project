@@ -9,6 +9,7 @@ import {
   Stack,
   Typography,
   Box,
+  Rating,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -25,7 +26,7 @@ function Films() {
       type: "DELETE_MOVIE",
       payload: id,
     });
-    console.log("FYEVA", watchList);
+    // console.log("FYEVA", watchList);
   };
 
   useEffect(() => {
@@ -35,10 +36,11 @@ function Films() {
   const Watched = (event) => {
     const original_title = event.target.getAttribute("name");
     const poster_path = event.target.getAttribute("image");
-
+  };
+  const handleUpdate = (id) => {
     dispatch({
       type: "UPDATE_MOVIES",
-      payload: watchList.id,
+      payload: id,
     });
     console.log("this is the update movie reducer", watchList);
   };
@@ -73,6 +75,24 @@ function Films() {
                   <Typography format="YYYY">
                     Release date: {movie?.release_date}
                   </Typography>
+                  <Rating
+                    name="popularity"
+                    value={movie.popularity}
+                    onChange={(event, newValue) => {
+                      dispatch({
+                        type: "UPDATE_RATING",
+                        payload: {
+                          id: movie.id,
+                          rating: newValue,
+                        },
+                      });
+                      swal.fire(
+                        "Rated!",
+                        "Thank you for rating this movie.",
+                        "success"
+                      );
+                    }}
+                  />
                   <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
                     <Button
                       variant="contained"

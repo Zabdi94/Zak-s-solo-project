@@ -16,7 +16,7 @@ import {
 
 function AboutPage() {
   const location = useLocation();
-  console.log("LOCATION", location.state);
+  //console.log("LOCATION", location.state);
   const Film = location.state;
   const dispatch = useDispatch();
 

@@ -84,15 +84,12 @@ function* deleteMovie(action) {
 
 function* updateMovie(action) {
   try {
-    const response = yield axios({
-      method: "PUT",
-      url: `/api/watched/${action.payload}`,
+    yield axios.put(`/api/watched/${action.payload.id}`, {
+      rating: action.payload.rating,
     });
-    yield put({
-      type: "FETCH_MOVIES",
-    });
+    yield put({ type: "FETCH_MOVIES" });
   } catch (error) {
-    console.log("error with element get request", error);
+    console.log("Error updating movie:", error);
     yield put({ type: "FETCH_ERROR", payload: error });
   }
 }
