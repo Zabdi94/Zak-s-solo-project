@@ -59,17 +59,6 @@ function MovieApi() {
       },
     });
 
-    // dispatch({
-    //   type: "ADD_MOVIE",
-    //   payload: {
-    //     title: original_title,
-    //     poster_path: poster_path,
-    //     overview: overview,
-    //   },
-    // });
-
-    // console.log(playings[id]);
-
     history.push({
       pathname: "/about",
       state: movie,

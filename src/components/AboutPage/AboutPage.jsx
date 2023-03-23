@@ -20,14 +20,6 @@ function AboutPage() {
   const Film = location.state;
   const dispatch = useDispatch();
 
-  // const handleDelete = () => {
-  //   dispatch({
-  //     type: "DELETE_MOVIE",
-  //     payload: Film.id,
-  //   });
-  //   console.log("Fetching", Film.id);
-  // };
-
   return (
     <div className="container">
       {Film ? (
@@ -47,16 +39,6 @@ function AboutPage() {
             <Typography component="div" variant="p">
               Description : {Film.overview}
             </Typography>
-            {/* <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
-              <Button
-                variant="contained"
-                color="secondary"
-                className="btn-block"
-                onClick={handleDelete}
-              >
-                DELETE
-              </Button>
-            </Stack> */}
           </CardContent>
         </div>
       ) : (

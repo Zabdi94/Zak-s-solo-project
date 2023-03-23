@@ -8,6 +8,9 @@ function* fetchMovies() {
     const movieIds = response.data.map((movie) => movie.films_id);
     const apiKey = "4b9adf7ac5e5c767b6d4500c39004e62";
 
+    yield put({
+      type: "CLEAR_MOVIE",
+    });
     for (const movieId of movieIds) {
       const movieResponse = yield call(
         axios.get,
@@ -27,34 +30,6 @@ function* fetchMovies() {
     console.error("error in GET MOVIES SAGA");
   }
 }
-
-// function* fetchMovies() {
-// try {
-//     // List of movie IDs to retrieve
-//     const movieIds = [315162, 505642, 804150, 631842, 594767];
-//     const url = "https://api.themoviedb.org/3/movie/";
-//     // TMDB API key
-//     const apiKey = "4b9adf7ac5e5c767b6d4500c39004e62";
-//     // List to store the retrieved movie data
-//     const movies = [];
-//     console.log("IDD", movieIds);
-//     // Loop through the movie IDs and make an API call for each one
-//     for (let i = 0; i < movieIds.length; i++) {
-//       const movieId = movieIds[i];
-//       const fullUrl = `${url}${movieId}?api_key=${apiKey}&language=en-US`;
-//       const response = yield call(axios.get, fullUrl);
-//       if (response.status === 200) {
-//         movies.push(response.data);
-//       }
-//     }
-//     yield put({
-//       type: "SET_MOVIES",
-//       payload: movies.i,
-//     });
-//   } catch (error) {
-//     console.error("Error in fetchMovies saga:", error);
-//   }
-// }
 
 function* addMovie(action) {
   console.log("in add", action.payload);

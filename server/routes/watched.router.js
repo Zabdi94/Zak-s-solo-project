@@ -55,9 +55,9 @@ router.delete("/:id", (req, res) => {
   console.log("deleted from watchlist", req.params.id);
   const sqlQuery = `
   DELETE FROM "user_films"
-  WHERE id =$1;
+  WHERE user_id = $1 AND films_id = $2;
   `;
-  const sqlValues = [req.params.id];
+  const sqlValues = [req.user.id, req.params.id];
   pool
     .query(sqlQuery, sqlValues)
     .then((results) => {

@@ -20,7 +20,14 @@ function Films() {
 
   const watchList = useSelector((store) => store.watchedReducer);
 
-  //console.log("arwg", watchList);
+  const handleDelete = (id) => {
+    dispatch({
+      type: "DELETE_MOVIE",
+      payload: id,
+    });
+    console.log("FYEVA", watchList);
+  };
+
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
@@ -31,10 +38,12 @@ function Films() {
 
     dispatch({
       type: "UPDATE_MOVIES",
-      payload: Films.id,
+      payload: watchList.id,
     });
-    console.log("this is the update shows reducer", Films);
+    console.log("this is the update shows reducer", watchList);
   };
+
+  console.log("WATCHLIST", watchList);
   return (
     <div className="films">
       {watchList.map((movie, i) => {
@@ -64,6 +73,16 @@ function Films() {
                   <Typography format="YYYY">
                     Release date: {movie?.release_date}
                   </Typography>
+                  <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className="btn-block"
+                      onClick={() => handleDelete(movie.id)}
+                    >
+                      DELETE
+                    </Button>
+                  </Stack>
                 </CardContent>
               </Box>
             </Card>
