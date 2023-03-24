@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 import {
   Card,
   Box,
-  Button,
   CardContent,
   CardMedia,
   Stack,
   Grid,
   Typography,
+  CardHeader,
 } from "@mui/material";
 
 function AboutPage() {
@@ -24,22 +24,67 @@ function AboutPage() {
     <div className="container">
       {Film ? (
         <div>
-          <CardMedia
-            component="img"
-            sx={{ width: 700, flexDirection: "column", flexWrap: "wrap" }}
-            image={"https://image.tmdb.org/t/p/original" + Film?.backdrop_path}
-          />
-
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography format="YYYY">{Film?.release_date}</Typography>
-            <Typography component="div" variant="h5">
-              {Film.original_title.substring(0, 40)}
-            </Typography>
-            <Typography color="text.secondary" component="div"></Typography>
-            <Typography component="div" variant="p">
-              Description : {Film.overview}
-            </Typography>
-          </CardContent>
+          <Card variant="outlined">
+            <CardMedia
+              component="img"
+              sx={{ width: 800, flexDirection: "column", flexWrap: "wrap" }}
+              image={
+                "https://image.tmdb.org/t/p/original" + Film?.backdrop_path
+              }
+            />
+            <Card
+              variant="outlined"
+              sx={{
+                display: "flex",
+                height: 200,
+                m: 1,
+                flexWrap: "wrap",
+                flexDirection: "column",
+              }}
+            >
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography
+                  format="YYYY"
+                  sx={{
+                    fontWeight: "bold",
+                    m: 1,
+                    fontSize: "25px",
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Release date: {Film?.release_date}
+                </Typography>
+                <Typography
+                  component="div"
+                  variant="h4"
+                  sx={{
+                    display: "flex",
+                    fontsize: "h6.fontsize",
+                    fontFamily: "Georgia",
+                    m: 1,
+                    fontWeight: "Bold",
+                  }}
+                >
+                  Title: {Film.original_title.substring(0, 40)}
+                </Typography>
+                <Box>
+                  <Typography
+                    component="div"
+                    variant="h4"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "22px",
+                      fontStyle: "italic",
+                      fontFamily: "Arial",
+                      m: 1,
+                    }}
+                  >
+                    Description : {Film.overview}
+                  </Typography>
+                </Box>
+              </CardContent>
+            </Card>
+          </Card>
         </div>
       ) : (
         <></>

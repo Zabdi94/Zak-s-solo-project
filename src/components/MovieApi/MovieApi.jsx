@@ -66,13 +66,13 @@ function MovieApi() {
   };
 
   return (
-    <div className="movies">
+    <Grid container spacing={2} columns={4}>
       {playings.map((playing, i) => {
         <Films playing={playing} />;
         // console.log('poster',playing.poster_path)
 
         return (
-          <div key={playing?.id} className="content">
+          <Grid item xs={12} sm={6} md={3} key={playing?.id}>
             <Card
               variant="outlined"
               sx={{
@@ -117,10 +117,10 @@ function MovieApi() {
                 </CardContent>
               </Box>
             </Card>
-          </div>
+          </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 }
 export default MovieApi;
