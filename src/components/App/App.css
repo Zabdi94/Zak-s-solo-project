@@ -5,8 +5,9 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background-color: mintcream;
 }
 
 img {
