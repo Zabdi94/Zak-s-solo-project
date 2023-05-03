@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  FormControl,
+  FormHelperText,
+  Input,
+  InputLabel,
+  Button,
+  Paper,
+  Typography,
+} from "@mui/material";
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -11,7 +20,7 @@ function RegisterForm() {
     event.preventDefault();
 
     dispatch({
-      type: 'REGISTER',
+      type: "REGISTER",
       payload: {
         username: username,
         password: password,
@@ -20,41 +29,38 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+    <Paper className="formPanel" elevation={3}>
+      <Typography variant="h5">Register User</Typography>
       {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
+        <Typography variant="subtitle1" color="error">
           {errors.registrationMessage}
-        </h3>
+        </Typography>
       )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+      <FormControl className="formControl">
+        <InputLabel htmlFor="username">Username</InputLabel>
+        <Input
+          id="username"
+          name="username"
+          value={username}
+          required
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </FormControl>
+      <FormControl className="formControl">
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          value={password}
+          required
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </FormControl>
+      <Button variant="contained" color="primary" type="submit">
+        Register
+      </Button>
+    </Paper>
   );
 }
 

@@ -6,7 +6,6 @@ const axios = require("axios");
  * GET route template
  */
 router.get("/", (req, res) => {
-  // GET route code here
   const sqlQuery = `
   SELECT * FROM user_films
   WHERE user_id = $1

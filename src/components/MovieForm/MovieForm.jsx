@@ -14,7 +14,7 @@ import {
   CardHeader,
 } from "@mui/material";
 
-function AboutPage() {
+function MovieForm() {
   const location = useLocation();
   //console.log("LOCATION", location.state);
   const Film = location.state;
@@ -93,4 +93,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default MovieForm;
