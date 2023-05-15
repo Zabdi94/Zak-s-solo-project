@@ -13,7 +13,8 @@ CREATE TABLE "films"(
 "id" SERIAL PRIMARY KEY,
 "original_title" VARCHAR(50),
 "poster_path" VARCHAR (255) NOT NULL,
-"overview" TEXT NOT NULL
+"overview" TEXT NOT NULL,
+"watched" BOOLEAN
 );
 
 CREATE TABLE "user_films" (
@@ -26,4 +27,5 @@ CREATE TABLE "comments" (
 "id" SERIAL PRIMARY KEY,
 "user_id" VARCHAR (50)
 );
+
 

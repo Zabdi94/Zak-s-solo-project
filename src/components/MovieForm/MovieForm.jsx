@@ -16,7 +16,6 @@ import {
 
 function MovieForm() {
   const location = useLocation();
-  //console.log("LOCATION", location.state);
   const Film = location.state;
   const dispatch = useDispatch();
 
@@ -27,7 +26,7 @@ function MovieForm() {
           <Card variant="outlined">
             <CardMedia
               component="img"
-              sx={{ width: 800, flexDirection: "column", flexWrap: "wrap" }}
+              sx={{ width: "100%", height: "500px", objectFit: "cover" }}
               image={
                 "https://image.tmdb.org/t/p/original" + Film?.backdrop_path
               }
@@ -36,10 +35,10 @@ function MovieForm() {
               variant="outlined"
               sx={{
                 display: "flex",
-                height: 200,
                 m: 1,
                 flexWrap: "wrap",
                 flexDirection: "column",
+                overflow: "auto",
               }}
             >
               <CardContent sx={{ flex: "1 0 auto" }}>
@@ -50,6 +49,7 @@ function MovieForm() {
                     m: 1,
                     fontSize: "25px",
                     fontFamily: "monospace",
+                    color: "#159658",
                   }}
                 >
                   Release date: {Film?.release_date}
@@ -63,9 +63,10 @@ function MovieForm() {
                     fontFamily: "Georgia",
                     m: 1,
                     fontWeight: "Bold",
+                    color: "#000000",
                   }}
                 >
-                  Title: {Film.original_title.substring(0, 40)}
+                  {Film.original_title.substring(0, 40)}
                 </Typography>
                 <Box>
                   <Typography
@@ -77,9 +78,10 @@ function MovieForm() {
                       fontStyle: "italic",
                       fontFamily: "Arial",
                       m: 1,
+                      color: "#000000",
                     }}
                   >
-                    Description : {Film.overview}
+                    {Film.overview}
                   </Typography>
                 </Box>
               </CardContent>

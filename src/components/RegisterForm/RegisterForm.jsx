@@ -26,40 +26,47 @@ function RegisterForm() {
         password: password,
       },
     });
-  }; // end registerUser
+  };
 
   return (
-    <Paper className="formPanel" elevation={3}>
+    <Paper className="formPanel" elevation={3} style={{ padding: "20px" }}>
       <Typography variant="h5">Register User</Typography>
       {errors.registrationMessage && (
         <Typography variant="subtitle1" color="error">
           {errors.registrationMessage}
         </Typography>
       )}
-      <FormControl className="formControl">
-        <InputLabel htmlFor="username">Username</InputLabel>
-        <Input
-          id="username"
-          name="username"
-          value={username}
-          required
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </FormControl>
-      <FormControl className="formControl">
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          required
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </FormControl>
-      <Button variant="contained" color="primary" type="submit">
-        Register
-      </Button>
+      <form onSubmit={registerUser}>
+        <FormControl className="formControl">
+          <InputLabel htmlFor="username">Username</InputLabel>
+          <Input
+            id="username"
+            name="username"
+            value={username}
+            required
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </FormControl>
+        <FormControl className="formControl">
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            value={password}
+            required
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </FormControl>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          sx={{ marginRight: "10px", m: "10px" }}
+        >
+          Register
+        </Button>
+      </form>
     </Paper>
   );
 }

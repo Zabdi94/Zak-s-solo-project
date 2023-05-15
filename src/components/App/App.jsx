@@ -21,7 +21,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import "./App.css";
 import MovieApi from "../MovieApi/MovieApi";
-import Films from "../Films/Films";
+import Films from "../Films/Films.jsx";
 
 function App() {
   const dispatch = useDispatch();

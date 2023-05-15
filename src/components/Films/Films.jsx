@@ -11,7 +11,6 @@ import {
   Box,
   Rating,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -26,7 +25,6 @@ function Films() {
       type: "DELETE_MOVIE",
       payload: id,
     });
-    // console.log("FYEVA", watchList);
   };
 
   useEffect(() => {
@@ -37,78 +35,65 @@ function Films() {
     const original_title = event.target.getAttribute("name");
     const poster_path = event.target.getAttribute("image");
   };
-  const handleUpdate = (id) => {
+
+  const handleUpdate = (id, newValue) => {
     dispatch({
       type: "UPDATE_MOVIES",
-      payload: id,
+      payload: {
+        id: id,
+        rating: newValue,
+      },
     });
     console.log("this is the update movie reducer", watchList);
+    swal.fire("Rated!", "Thank you for rating this movie.", "success");
   };
 
-  console.log("WATCHLIST", watchList);
   return (
     <div className="films">
-      {watchList.map((movie, i) => {
-        console.log("MOVIE", movie);
+      {watchList.map((movie, i) => (
+        <div key={i} className="movie">
+          <Card
+            variant="outlined"
+            sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
+          >
+            <CardMedia
+              component="img"
+              sx={{ width: 250, flexDirection: "column", flexWrap: "wrap" }}
+              image={"https://image.tmdb.org/t/p/original" + movie?.poster_path}
+            />
 
-        return (
-          <div key={i} className="movie">
-            <Card
-              variant="outlined"
-              sx={{ display: "flex", height: 400, m: 1, flexWrap: "wrap" }}
+            <Box
+              sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
             >
-              <CardMedia
-                component="img"
-                sx={{ width: 250, flexDirection: "column", flexWrap: "wrap" }}
-                image={
-                  "https://image.tmdb.org/t/p/original" + movie?.poster_path
-                }
-              />
-
-              <Box
-                sx={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
-              >
-                <CardContent sx={{ flex: "1 0 auto" }}>
-                  <Typography component="div" variant="h5">
-                    {movie.title?.substring(0, 40)}
-                  </Typography>
-                  <Typography format="YYYY">
-                    Release date: {movie?.release_date}
-                  </Typography>
-                  <Rating
-                    name="popularity"
-                    value={movie.popularity}
-                    onChange={(event, newValue) => {
-                      dispatch({
-                        type: "UPDATE_RATING",
-                        payload: {
-                          id: movie.id,
-                          rating: newValue,
-                        },
-                      });
-                      swal.fire(
-                        "Rated!",
-                        "Thank you for rating this movie.",
-                        "success"
-                      );
-                    }}
-                  />
-                  <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      className="btn-block"
-                      onClick={() => handleDelete(movie.id)}
-                    >
-                      DELETE
-                    </Button>
-                  </Stack>
-                </CardContent>
-              </Box>
-            </Card>
-          </div>
-        );
-      })}
+              <CardContent sx={{ flex: "1 0 auto" }}>
+                <Typography component="div" variant="h5">
+                  {movie.title?.substring(0, 40)}
+                </Typography>
+                <Typography format="YYYY">
+                  Release date: {movie?.release_date}
+                </Typography>
+                <Rating
+                  name="popularity"
+                  value={movie.popularity}
+                  onChange={(event, newValue) => {
+                    handleUpdate(movie.id, newValue);
+                  }}
+                />
+                <Stack spacing={2} direction="row" sx={{ mt: 6 }}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className="btn-block"
+                    onClick={() => handleDelete(movie.id)}
+                  >
+                    DELETE
+                  </Button>
+                </Stack>
+              </CardContent>
+            </Box>
+          </Card>
+        </div>
+      ))}
     </div>
   );
 }

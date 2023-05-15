@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 
 function* fetchMovies() {
   try {
+    console.log("FETCH_MOVIES action dispatched");
     const response = yield call(axios.get, "/api/watched");
     console.log("Res.data", response.data);
     const movieIds = response.data.map((movie) => movie.films_id);
@@ -42,21 +43,6 @@ function* addMovie(action) {
   });
 }
 
-// function* deleteMovie(action) {
-//   try {
-//     const response = yield axios({
-//       method: "DELETE",
-//       url: `/api/watched/${action.payload}`,
-//     });
-//     yield put({
-//       type: "FETCH_MOVIES",
-//     });
-//   } catch (error) {
-//     console.log("error with element get request", error);
-//     yield put({ type: "FETCH_ERROR", payload: error });
-//   }
-// }
-
 function* deleteMovie(action) {
   const swal = withReactContent(Swal);
 
@@ -70,12 +56,12 @@ function* deleteMovie(action) {
       showCancelButton: true,
     });
     if (sweetResult.isConfirmed) {
-      const response = yield axios({
+      yield axios({
         method: "DELETE",
         url: `/api/watched/${action.payload}`,
       });
 
-      yield put({ type: "FETCH_MOVIES", payload: response.data });
+      yield put({ type: "FETCH_MOVIES" });
     }
   } catch (error) {
     console.error(error);

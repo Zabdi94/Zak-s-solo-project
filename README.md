@@ -1,121 +1,90 @@
+SOLO-PROJECT
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+# GO CINEMA
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Description
 
-## Use the Template for This Repository (Don't Clone)
+_Duration: 13 days Sprint_
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+Go cinema was created to show users the movies that are currently playing in theatres using the TMDB now playing API.
 
+---
 
-## Prerequisites
+## **TABLE OF CONTENT:**
 
-Before you get started, make sure you have the following software installed on your computer:
+1. [Screenshot of application](#screenshot-of-application)
+1. [Installation & Setup](#installation--setup)
+1. [Usage](#usage)
+1. [Technologies utilization](#technologies-utilization)
+1. [Contributors](#contributors)
+1. [Acknowledgement](#acknowledgement)
 
-- [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
-- [Nodemon](https://nodemon.io/)
+---
 
-## Create database and table
+## Screenshot of application
 
-Create a new database called `prime_app` and create a `user` table:
+## <img width="1440" alt="Screen Shot 2023-03-27 at 2 02 34 PM" src="https://user-images.githubusercontent.com/113937204/228041032-70961e70-b140-4b78-9eac-6c3f0a6931bd.png">
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+## Installation & Setup
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+1. $ git clone git@github.com:Zabdi94/Zak-s-solo-project.git
+1. `npm install`
+1. Start postgres using brew services start postgresql (database name: `prime_app`)
+1. `npm run server` in your terminal
+1. `npm run client` in another terminal.
+1. Navigate to localhost:3000
 
-## Development Setup Instructions
+---
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+## Usage
 
-## Debugging
+### Home Page
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+1. List of all of the movies that are currently playing
+1. Click add to watchList to show details
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+### info page
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+1. Shows the movie cover, title, date, and description
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## about page
 
-## Testing Routes with Postman
+1. List of all the movies you've added to your watchlist giving you a option to delete the film or rate it.
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+---
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+## Technologies utilization
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+- Javascript
+- HTML
+- CSS
+- [React](https://reactjs.org/)
+- [React Router v5](https://v5.reactrouter.com/web/guides/quick-start)
+- [Redux](https://redux.js.org/)
+- [Redux-Saga](https://redux-saga.js.org/)
+- [Node js](https://nodejs.org/en/about/)
+- [Express js](https://expressjs.com/)
+- [Axio](https://axio.com/)
+- [Postico 2](https://eggerapps.at/postico2/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Postman](https://www.postman.com/)
+- [GitHub](https://github.com/zabdi94/)
+- [TmdbApi](https://developers.themoviedb.org/3/movies/get-now-playing)
+- [sweetAlert2](https://sweetalert2.github.io/)
+- [MaterialUi](https://mui.com/material-ui/getting-started/installation/)
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+---
 
-## Production Build
+## socials:
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+- [linkedin] (https://www.linkedin.com/in/zakariye/)
+- [gitHub](https://github.com/Zabdi94)
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+## Acknowledgement
 
-## Lay of the Land
+Prime Academy and our instructors Dane and Vlada for their support and guidances.
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+![MIT LICENSE](https://img.shields.io/github/license/scottbromander/the_marketplace.svg?style=flat-square)
+![REPO SIZE](https://img.shields.io/github/repo-size/scottbromander/the_marketplace.svg?style=flat-square)
+![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
+![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
