@@ -27,9 +27,9 @@ Go cinema was created to show users the movies that are currently playing in the
 
 <img width="1440" alt="Screen Shot 2023-05-15 at 2 04 40 PM" src="https://github.com/Zabdi94/Zak-s-solo-project/assets/113937204/2660d2db-64b3-4d04-9c78-49ca146ebe3b">
 
-<img width="1440" alt="Screen Shot 2023-05-15 at 2 06 20 PM" src="https://github.com/Zabdi94/Zak-s-solo-project/assets/113937204/e13836f4-a93e-4782-895e-abe640ef936a">
+<img width="1440" alt="Screen Shot 2023-05-15 at 2 09 41 PM" src="https://github.com/Zabdi94/Zak-s-solo-project/assets/113937204/137d5eba-1ffd-4d8e-93cf-f09dd8ed47be">
 
-<img width="1440" alt="Screen Shot 2023-03-27 at 2 02 34 PM" src="https://user-images.githubusercontent.com/113937204/228041032-70961e70-b140-4b78-9eac-6c3f0a6931bd.png">
+<img width="1440" alt="Screen Shot 2023-05-15 at 2 06 20 PM" src="https://github.com/Zabdi94/Zak-s-solo-project/assets/113937204/e13836f4-a93e-4782-895e-abe640ef936a">
 
 ## Installation & Setup
 
