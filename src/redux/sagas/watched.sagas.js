@@ -9,11 +9,14 @@ function* fetchMovies() {
     const response = yield call(axios.get, "/api/watched");
     console.log("Res.data", response.data);
     const movieIds = response.data.map((movie) => movie.films_id);
-    const apiKey = "4b9adf7ac5e5c767b6d4500c39004e62";
+
+    // Retrieve the API key from the environment variable
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     yield put({
       type: "CLEAR_MOVIE",
     });
+
     for (const movieId of movieIds) {
       const movieResponse = yield call(
         axios.get,
@@ -27,58 +30,12 @@ function* fetchMovies() {
         payload: movieData,
       });
     }
-
-    //console.log("Res.data", response.data);
   } catch {
     console.error("error in GET MOVIES SAGA");
   }
 }
 
-function* addMovie(action) {
-  console.log("in add", action.payload);
-  yield axios({
-    method: "POST",
-    url: "/api/watched",
-    data: action.payload,
-  });
-}
-
-function* deleteMovie(action) {
-  const swal = withReactContent(Swal);
-
-  try {
-    let sweetResult = yield swal.fire({
-      title: "Are you sure you want to delete this item from your watchlist?",
-      confirmButtonColor: "#263567",
-      cancelButtonColor: "#a50104",
-      icon: "warning",
-      showConfirmButton: true,
-      showCancelButton: true,
-    });
-    if (sweetResult.isConfirmed) {
-      yield axios({
-        method: "DELETE",
-        url: `/api/watched/${action.payload}`,
-      });
-
-      yield put({ type: "FETCH_MOVIES" });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function* updateMovie(action) {
-  try {
-    yield axios.put(`/api/watched/${action.payload.id}`, {
-      rating: action.payload.rating,
-    });
-    yield put({ type: "FETCH_MOVIES" });
-  } catch (error) {
-    console.log("Error updating movie:", error);
-    yield put({ type: "FETCH_ERROR", payload: error });
-  }
-}
+// ...rest of the code
 
 function* watchedSagas() {
   yield takeLatest("FETCH_MOVIES", fetchMovies);
@@ -86,4 +43,5 @@ function* watchedSagas() {
   yield takeLatest("DELETE_MOVIE", deleteMovie);
   yield takeLatest("UPDATE_MOVIE", updateMovie);
 }
+
 export default watchedSagas;
