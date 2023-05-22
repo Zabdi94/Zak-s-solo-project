@@ -35,7 +35,51 @@ function* fetchMovies() {
   }
 }
 
-// ...rest of the code
+function* addMovie(action) {
+  console.log("in add", action.payload);
+  yield axios({
+    method: "POST",
+    url: "/api/watched",
+    data: action.payload,
+  });
+}
+
+function* deleteMovie(action) {
+  const swal = withReactContent(Swal);
+
+  try {
+    let sweetResult = yield swal.fire({
+      title: "Are you sure you want to delete this item from your watchlist?",
+      confirmButtonColor: "#263567",
+      cancelButtonColor: "#a50104",
+      icon: "warning",
+      showConfirmButton: true,
+      showCancelButton: true,
+    });
+    if (sweetResult.isConfirmed) {
+      yield axios({
+        method: "DELETE",
+        url: `/api/watched/${action.payload}`,
+      });
+
+      yield put({ type: "FETCH_MOVIES" });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* updateMovie(action) {
+  try {
+    yield axios.put(`/api/watched/${action.payload.id}`, {
+      rating: action.payload.rating,
+    });
+    yield put({ type: "FETCH_MOVIES" });
+  } catch (error) {
+    console.log("Error updating movie:", error);
+    yield put({ type: "FETCH_ERROR", payload: error });
+  }
+}
 
 function* watchedSagas() {
   yield takeLatest("FETCH_MOVIES", fetchMovies);
